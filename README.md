@@ -38,3 +38,8 @@ set datafldr="C:\xampp\mysql\data"
 
 REM Database name
 set dbname="openemr"
+
+
+
+REM Path to the 7-Zip executable file
+set zip="C:\Program Files (x86)\7-Zip\7zG.exe"
