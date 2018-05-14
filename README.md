@@ -46,3 +46,8 @@ set dbname="openemr"
 
 REM Path to the 7-Zip executable file
 set zip="C:\Program Files (x86)\7-Zip\7zG.exe"
+
+---------------------------
+
+REM Set number of days to keep backup files
+set retaindays=5
