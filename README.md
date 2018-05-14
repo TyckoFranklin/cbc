@@ -20,3 +20,21 @@ set backuptime=%year%-%mnt%-%day%-%hr%.%min%
 
 REM echo backuptime on screen to validate in debug mode
 echo %backuptime%
+
+
+REM PATHS AND SETTINGS
+REM Database username and password ("" = no password)
+set dbuser=root
+set dbpass=""
+
+REM MySql executable path for OpenEMR
+set mysqldumpexe="C:\xampp\mysql\bin\mysqldump.exe"
+
+REM Path to backup folder
+set backupfldr="C:\Users\Administrator\Desktop\OpenEMR\"
+
+REM Path to OpenEMR data folder
+set datafldr="C:\xampp\mysql\data"
+
+REM Database name
+set dbname="openemr"
