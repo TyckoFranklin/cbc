@@ -51,3 +51,19 @@ set zip="C:\Program Files (x86)\7-Zip\7zG.exe"
 
 REM Set number of days to keep backup files
 set retaindays=5
+
+
+---------------------------------
+REM Identify the database files and delete all SQL files that are not the openemr database\r\n
+FOR /D %%F IN (*) DO (\r\n
+IF NOT [%%F]==["performance_schema mysql phpmyadmin test"] (\r\n
+SET %%F=!%%F:002d=-!\r\n
+%mysqldumpexe% --lock-tables=false --user=%dbuser% --password=%dbpass% --databases --routines %%F > "%backupfldr%%%F.%backuptime%.sql"\r\n
+) ELSE (\r\n
+echo Skipping database backup for the other database folders\r\n
+)\r\n
+)\r\n
+del %backupfldr%performance_schema."%backuptime%.sql"\r\n
+del %backupfldr%mysql."%backuptime%.sql"\r\n
+del %backupfldr%phpmyadmin."%backuptime%.sql"\r\n
+del %backupfldr%test."%backuptime%.sql"\r\n
