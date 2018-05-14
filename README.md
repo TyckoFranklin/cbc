@@ -67,3 +67,16 @@ del %backupfldr%performance_schema."%backuptime%.sql"\r\n
 del %backupfldr%mysql."%backuptime%.sql"\r\n
 del %backupfldr%phpmyadmin."%backuptime%.sql"\r\n
 del %backupfldr%test."%backuptime%.sql"\r\n
+
+----------------------------------
+
+REM Zip the OpenEMR files
+echo Zipping OpenEMR database files
+%zip% a -tzip "%backupfldr%OpenEMRFullBackup.%backuptime%.zip" "%backupfldr%*.sql"
+
+REM Clean up rogue .sql files
+del "%backupfldr%*.sql"
+
+REM Remove files older than 5 days and display an error if no files are older than 5 days
+echo "Deleting zip archives older than 5 days"
+FORFILES -p %backupfldr% -s -m *.* -d -%retaindays% -X -c "cmd /c del /q @path"
